@@ -2107,14 +2107,34 @@
                 return;
             }
 
+            const downPaymentPercent = (downPayment / carPrice) * 100;
+            let annualRate;
+
+            if (downPaymentPercent >= 20 && downPaymentPercent < 25) {
+                annualRate = 0.15;
+            } else if (downPaymentPercent >= 25 && downPaymentPercent < 30) {
+                annualRate = 0.145;
+            } else if (downPaymentPercent >= 30 && downPaymentPercent < 40) {
+                annualRate = 0.135;
+            } else if (downPaymentPercent >= 40 && downPaymentPercent < 50) {
+                annualRate = 0.125;
+            } else if (downPaymentPercent >= 50 && downPaymentPercent < 100) {
+                annualRate = 0.105;
+            } else {
+                result.textContent = 'المقدم يجب أن يكون من 20% إلى أقل من 100% من سعر السيارة.';
+                return;
+            }
+
             const financedAmount = carPrice - downPayment;
-            const monthlyRate = 0.129 / 12;
+            const monthlyRate = annualRate / 12;
             const months = years * 12;
             const monthlyInstallment = financedAmount * monthlyRate /
                 (1 - Math.pow(1 + monthlyRate, -months));
             const formattedInstallment = Math.round(monthlyInstallment).toLocaleString('en-US');
+            const formattedRate = (annualRate * 100).toLocaleString('en-US', { maximumFractionDigits: 1 });
+            const formattedDownPaymentPercent = downPaymentPercent.toLocaleString('en-US', { maximumFractionDigits: 2 });
 
-            result.textContent = `القسط الشهري التقديري: ${formattedInstallment} ج.م لمدة ${years} سنة. (بحساب 12.9% سنوياً قبل الرسوم والتأمين)`;
+            result.textContent = `القسط الشهري التقديري: ${formattedInstallment} ج.م لمدة ${years} سنة. (نسبة المقدم ${formattedDownPaymentPercent}%، والفائدة السنوية ${formattedRate}% قبل الرسوم والتأمين)`;
         }
         populateCarModelOptions();
         updateMotorTypeVisibility();
