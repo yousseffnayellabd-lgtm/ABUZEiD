@@ -10,6 +10,8 @@
         أبو زيد للسيارات | ABU ZEID AUTOMOTIVE
     </title>
 
+    <link rel="icon" type="image/png" href="./favicon.png">
+
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -1022,6 +1024,7 @@
                 <div class="logo-box"><img src="https://logos-world.net/wp-content/uploads/2020/04/Nissan-Logo.png" alt="Nissan" class="brand-img"></div>
                 <div class="brand-name">نيسان - Nissan</div>
             </div>
+
             <div class="brand-card" onclick="openModels('Toyota')">
                 <div class="logo-box"><img src="https://logos-world.net/wp-content/uploads/2020/04/Toyota-Logo.png" alt="Toyota" class="brand-img"></div>
                 <div class="brand-name">تويوتا - Toyota</div>
@@ -1046,7 +1049,6 @@
                 <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Hyundai_Motor_Company_logo.svg" alt="Hyundai" class="brand-img"></div>
                 <div class="brand-name">هيونداي - Hyundai</div>
             </div>
-
             <div class="brand-card" onclick="openModels('Kia')">
                 <div class="logo-box"><img src="https://hala-car.com/media/catalog/product/cache/0daeb07bb1d294c1f281fab47369d56a/r/w/rwki0023-1.jpg" alt="Kia" class="brand-img"></div>
                 <div class="brand-name">كيا - Kia</div>
@@ -1999,6 +2001,7 @@
             const motorTypeSelect = document.getElementById('motorType');
             const selectedModel = modelInput.value.trim().toLowerCase();
             const needsMotorType = ['volvo ex30', 'volvo ex90'].includes(selectedModel);
+
             motorTypeGroup.style.display = needsMotorType ? 'flex' : 'none';
             motorTypeSelect.disabled = !needsMotorType;
             const isCash = document.getElementById('paymentMethod').value === 'كاش';
@@ -2048,7 +2051,6 @@
             updateMotorTypeVisibility();
             window.location.href = '#carBookingPage';
         }
-
         function closeModels() {
             document.getElementById('modelsPage').classList.remove('active');
         }
